@@ -356,11 +356,26 @@ open class PieChartRenderer: NSObject, DataRenderer
             let lineHeight = valueFont.lineHeight
             
             let formatter = dataSet.valueFormatter
-            
+
+            var total = 0
+
+            var lastValue:Double = 0
+
             for j in 0 ..< dataSet.entryCount
             {
                 guard let e = dataSet.entryForIndex(j) else { continue }
                 let pe = e as? PieChartDataEntry
+
+                total += 1
+                if(total > 3){
+                    continue
+                }
+                let nowValue = pe?.value ?? 0
+                if(total == 3 && nowValue < 0.1 && lastValue < 0.1) {
+                    continue
+                }
+
+                lastValue = nowValue
 
                 if xIndex == 0
                 {
