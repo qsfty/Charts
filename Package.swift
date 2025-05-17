@@ -12,10 +12,6 @@ let package = Package(
     products: [
         .library(
             name: "Charts",
-            targets: ["Charts"]),
-        .library(
-            name: "ChartsDynamic",
-            type: .dynamic,
             targets: ["Charts"])
     ],
     dependencies: [
